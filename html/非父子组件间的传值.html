@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>非父子组件间的传值</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child content="组件1" ></child>
+        <child content="组件2" ></child>
+    </div>
+
+    <script>
+        Vue.prototype.bus = new Vue();
+
+        Vue.component('child',{
+            data:function(){
+                return{
+                    selfContent:this.content
+                }
+            },
+            props:{
+                content:String
+            },
+            template:'<div @click="handleClick"  >{{selfContent}}</div>',
+            methods: {
+                handleClick:function(){
+                this.bus.$emit('change',this.content)
+                }
+            },
+            mounted() {
+                var this_ = this
+                this.bus.$on('change',function(msg){
+                    this_.selfContent = msg;
+                })
+            },
+      
+        })
+        var vm = new Vue({
+            el:"#app",
+            methods: {
+                handleClick:function(){
+                    alert("click")
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

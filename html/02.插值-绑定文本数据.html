@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插值-绑定文本数据</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div >计算5+6的值：{{data5+data6}}</div>
+        <div >三元表达式：{{data7 ? 'YES' : 'NO' }}</div>
+        <div>拆分重排数组：{{ data8.split('-').reverse().join('.') }}</div>
+    
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+               data5:5,
+               data6:6,
+               data7:true,
+               data8:'2019-12-20'
+            },
+        })
+    </script>
+</body>
+
+</html>

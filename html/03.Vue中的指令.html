@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的指令</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="seen">现在你看到我了</div>
+        <a :href="baiduhref">跳转百度</a>
+        <img :src="baiduimage" >
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+               seen:true,
+               baiduhref:'http://www.baidu.com',
+               baiduimage:'https://m.baidu.com/se/static/img/iphone/logo_web.png'
+            },
+        })
+    </script>
+</body>
+
+</html>

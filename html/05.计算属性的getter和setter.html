@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getter和setter方法</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div > {{resultWord}}</div>
+        <button @click="handleClick">改变数值</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                firstWord:"a",
+                secondWord:"b",
+            },
+            computed: {
+                resultWord:{
+                    get(){
+                       return this.resultWord = this.firstWord + this.secondWord
+                    },
+                    set(value){
+                        console.log("当前resultWord的值是:"+value)
+                        this.firstWord = value+"c";
+                        console.log("计算属性setter中firstWord的值:"+this.firstWord)
+                    }
+                }
+            },
+            methods: {
+                handleClick(){
+                    this.secondWord = "z"
+                    console.log("执行方法后resultWord的值:"+this.resultWord)
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

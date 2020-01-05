@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class绑定</title>
+    <script src="../js/vue.js"></script>
+</head>
+<style>
+    .active{
+        color: green;
+    }
+    .default{
+        width: 100px;
+        height: 20px;
+        background: #999;
+    }
+    .danger{
+        font-weight: 900;
+    }
+    .error{
+        font-style: italic; 
+    }
+</style>
+<body>
+    <div id="app">
+        <!-- 使用对象语法绑定class -->
+        <div :class="{ active: isActive }">isACtive是true的时候我就是绿色的</div>
+       <div :class="{ active: isActive,default:isDefault,danger:isDanger }">绑定多个属性</div>
+       <div class="default" :class="{ danger:isDanger }">两种方式共存</div>
+       <div class="active" :class="{ error:isError }">计算属性绑定</div>
+        <!-- 使用数组语法绑定class -->
+        <div  :class="[activeClass, errorClass]" >数组形式</div>
+        <!-- 三元表达式 -->
+        <div :class="[isActive ? activeClass : errorClass,activeClass]">根据条件切换列表中的class</div>
+       <!-- 数组语法中使用对象语法 -->
+        <div v-bind:class="[{ active: isActive }, errorClass]">数组语法中使用对象语法</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+              return {
+                isActive:false,
+                isDefault:true,
+                isDanger:true,
+                activeClass:'active',
+                errorClass:'error'
+              }
+          },
+          computed:{
+              isError(){
+                    return (this.isDefault && this.isDanger)
+              }
+          }
+        })
+    </script>
+</body>
+
+</html>

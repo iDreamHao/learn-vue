@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>style的绑定</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div :style="{ color: activeColor, fontSize: fontSize + 'px' }">style的绑定</div>
+        <div :style="styleObject">直接绑定一个样式对象</div>
+        <div :style="extraStyle">计算属性绑定</div>
+        <div :style="[ object1, object2]">数组语法绑定多个对象</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                activeColor: "red",
+                fontSize: 20,
+                styleObject: {
+                    color: 'blue',
+                    fontSize: '16px'
+                },
+                object1:{
+                    color:'grey'
+                }
+            },
+            computed: {
+               extraStyle(){
+                   return {
+                    color: 'green',
+                    fontSize: '20px',
+                   }
+               },
+               object2(){
+                    return {
+                        fontSize:'24px'
+                    }
+               }
+            },
+        })
+    </script>
+</body>
+
+</html>
